@@ -2,7 +2,7 @@
   <div class="home-container">
     <!-- 顶部导航栏 -->
     <Navbar />
-
+    <canvas id="live2dcanvas" width="150" height="300"></canvas>
     <!-- 主要内容区域 -->
     <div class="main-content">
       <div class="content-container">
@@ -32,6 +32,10 @@
           </div>
         </div>
 
+
+
+
+                
         <!-- 工程列表 -->
         <div class="projects-grid" v-loading="loading">
           <el-empty v-if="projects.length === 0" description="暂无工程" />
@@ -100,6 +104,8 @@ import ProjectCard from '@/components/ProjectCard.vue'
 import ProjectList from '@/components/ProjectList.vue'
 import ProjectDialog from '@/components/ProjectDialog.vue'
 import UploadDialog from '@/components/UploadDialog.vue'
+
+
 
 const store = useStore()
 const router = useRouter()
@@ -182,6 +188,89 @@ const handleDeleteProject = async (project: ProjectVO) => {
   }
 }
 
+
+onMounted(() => {
+  // 动态加载 Live2D 脚本
+  const loadScript = (src) =>
+    new Promise((resolve) => {
+      const s = document.createElement('script')
+      s.src = src
+      s.onload = resolve
+      document.body.appendChild(s)
+    })
+
+  // 加载脚本并初始化
+  Promise.all([
+    loadScript('/live2d/device.min.js'),
+    loadScript('/live2d/script.js'),
+  ]).then(() => {
+    const canvas = document.getElementById('live2dcanvas')
+    const ratio = window.devicePixelRatio || 1
+    const width = 500
+    const height = 1000
+
+    // 画布高清设置
+    canvas.width = width * ratio
+    canvas.height = height * ratio
+    canvas.style.width = width + 'px'
+    canvas.style.height = height + 'px'
+
+    // 初始位置
+    canvas.style.position = 'fixed'
+    canvas.style.left = '70vw'
+    canvas.style.top = '5vh'
+
+    // 初始缩放
+    let scale = 1.0
+    canvas.style.transformOrigin = 'center bottom'
+    canvas.style.transform = `scale(${scale})`
+
+    // 加载模型
+    loadlive2d('live2dcanvas', '/live2d/assets/Epsilon2.1.model.json', 1.0)
+
+    // 🧩 拖拽功能
+    let isDragging = false
+    let offsetX = 0
+    let offsetY = 0
+
+    canvas.addEventListener('mousedown', (e) => {
+      isDragging = true
+      offsetX = e.clientX - canvas.offsetLeft
+      offsetY = e.clientY - canvas.offsetTop
+      canvas.style.cursor = 'grabbing'
+    })
+
+    window.addEventListener('mousemove', (e) => {
+      if (!isDragging) return
+      e.preventDefault()
+      const x = e.clientX - offsetX
+      const y = e.clientY - offsetY
+      canvas.style.left = x + 'px'
+      canvas.style.top = y + 'px'
+    })
+
+    window.addEventListener('mouseup', () => {
+      isDragging = false
+      canvas.style.cursor = 'grab'
+    })
+
+    // 🧭 滚轮缩放（CSS transform，不重新加载模型）
+    canvas.addEventListener('wheel', (e) => {
+      e.preventDefault()
+      const delta = e.deltaY < 0 ? 0.1 : -0.1
+      scale = Math.min(Math.max(scale + delta, 0.5), 2.5)
+      canvas.style.transform = `scale(${scale})`
+    })
+
+    // 双击重置大小与位置
+    canvas.addEventListener('dblclick', () => {
+      scale = 1.0
+      canvas.style.transform = `scale(${scale})`
+      canvas.style.left = '70vw'
+      canvas.style.top = '40vh'
+    })
+  })
+})
 // 提交工程表单
 const handleSubmitProject = async (form: { id?: number, name: string, description: string }) => {
   try {
@@ -241,6 +330,25 @@ onMounted(() => {
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@600&display=swap');
 
+#live2dcanvas {
+  position: fixed;
+  width: 400px;
+  height: 800px;
+  opacity: 0.7;
+  right: 0;
+  bottom: -20px;
+  z-index: 999;
+  /* pointer-events: none; */
+  opacity: 0.9;
+  cursor: grab; /* 鼠标悬停变小手 */
+  transition: left 0.1s linear, top 0.1s linear;
+}
+@media (max-width: 768px) {
+  #live2dcanvas {
+    width: 75px;
+    height: 150px;
+  }
+}
 .home-container {
   width: 100vw;
   height: 100vh;

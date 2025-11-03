@@ -1,22 +1,18 @@
-# 📚 Readify - 智能阅读笔记助手
+# 📚 科小记 - 智能阅读笔记助手
 
 <div align="center">
   <h3>基于AI的智能阅读笔记和思维导图生成工具</h3>
   
-  ![Vue.js](https://img.shields.io/badge/Vue.js-4FC08D?style=for-the-badge&logo=vue.js&logoColor=white)
-  ![Java](https://img.shields.io/badge/Java-17-007396?style=for-the-badge&logo=java&logoColor=white)
-  ![Python](https://img.shields.io/badge/Python-3.9-3776AB?style=for-the-badge&logo=python&logoColor=white)
-  ![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.2.2-6DB33F?style=for-the-badge&logo=spring-boot&logoColor=white)
-  ![FastAPI](https://img.shields.io/badge/FastAPI-0.100.0+-009688?style=for-the-badge&logo=fastapi&logoColor=white)
+
 </div>
 
 ## 📋 项目概述
 
-Readify是一个智能阅读笔记助手系统，通过AI技术帮助用户轻松整理知识并生成直观的思维导图。项目由三个部分组成：
+科小记是一个智能阅读笔记助手系统，通过AI技术帮助用户轻松整理知识并生成直观的思维导图。项目由三个部分组成：
 
-- **Readify Frontend** - 基于Vue 3的用户界面
-- **Readify Server** - 基于Spring Boot的后端服务
-- **Readify AGI** - 基于Python FastAPI的智能服务底座
+- **科小记 Frontend** - 基于Vue 3的用户界面
+- **科小记 Server** - 基于Spring Boot的后端服务
+- **科小记 AGI** - 基于Python FastAPI的智能服务底座
 
 ## 📸 功能展示
 
@@ -27,17 +23,12 @@ Readify是一个智能阅读笔记助手系统，通过AI技术帮助用户轻�
   <img src="img/2-对话-1.png" alt="对话界面1" width="80%">
   <p><i>对话界面 - 思考过程</i></p>
   
-  <img src="img/3-对话-2.png" alt="对话界面2" width="80%">
-  <p><i>对话界面 - 最终答案</i></p>
+
   
   <img src="img/4-笔记.png" alt="笔记界面" width="80%">
   <p><i>笔记界面 - 笔记管理</i></p>
   
-  <img src="img/5-笔记生成.png" alt="笔记生成" width="80%">
-  <p><i>笔记生成 - 自动分析</i></p>
-  
-  <img src="img/6-笔记生成.png" alt="笔记生成结果" width="80%">
-  <p><i>笔记生成 - 结果展示</i></p>
+
 </div>
 
 ## ✨ 核心功能
@@ -58,17 +49,17 @@ readify_parent/
 └── readify_agi/         # AI智能体底座
 ```
 
-### Readify Frontend
+### 科小记 Frontend
 
 - **技术栈**: Vue 3, TypeScript, Element Plus, Vite, markmap.js
 - **功能**: 用户界面
 
-### Readify Server
+### 科小记 Server
 
 - **技术栈**: Java 17, Spring Boot 3.2.2, MyBatis-Plus, MySQL
 - **功能**: 业务端代码实现
 
-### Readify AGI
+### 科小记 AGI
 
 - **技术栈**: Python 3.9, FastAPI, LangChain, OpenAI
 - **功能**: AI服务底座，多智能体协调, 文档分析, 知识提取, 思维导图生成
@@ -90,7 +81,7 @@ git clone https://github.com/xiaosl-cell/readify_parent.git
 cd readify
 ```
 
-2. **配置后端服务 (Readify Server)**
+2. **配置后端服务 (科小记 Server)**
 ```bash
 cd readify_server
 # 修改数据库配置
@@ -103,7 +94,7 @@ vim src/main/resources/application.yml
 # - readify.agi.base-url: AGI服务地址
 ```
 
-3. **配置AGI服务 (Readify AGI)**
+3. **配置AGI服务 (科小记 AGI)**
 ```bash
 cd readify_agi
 # 修改环境配置
@@ -117,25 +108,40 @@ vim src/main/resources/application.yml
 # 修改数据库、agi服务等相关配置
 ```
 
-4. **启动后端服务 (Readify Server)**
+4. **启动后端服务 (科小记 Server)**
 ```bash
 cd readify_server
 ./mvnw spring-boot:run
 ```
 
-5. **启动AGI服务 (Readify AGI)**
+5. **启动AGI服务 (科小记 AGI)**
 ```bash
 cd readify_agi
 pip install -r requirements.txt
 python main.py
 ```
 
-6. **启动前端应用 (Readify Frontend)**
+6. **启动前端应用 (科小记 Frontend)**
 ```bash
 cd readify_frontend
 npm install
 npm run dev
 ```
+
+## 🎎 数字看板娘（Live2D）
+
+前端首页已内置 Live2D 数字看板娘，默认在 `Home.vue` 中启用并渲染到 `#live2dcanvas`。
+
+- **资源位置**: `readify_frontend/public/live2d/`
+  - 模型: `assets/Epsilon2.1.model.json` 及其依赖
+  - 脚本: `/live2d/device.min.js`, `/live2d/script.js`
+- **初始化方式**: `Home.vue` 中动态加载脚本并调用
+  ```js
+  loadlive2d('live2dcanvas', '/live2d/assets/Epsilon2.1.model.json', 1.0)
+  ```
+- **交互说明**: 支持拖拽移动、滚轮缩放、双击重置位置与大小
+- **关闭/禁用**: 注释 `Home.vue` 中 Live2D 脚本加载与 `<canvas id="live2dcanvas">`，或移除对应 `Promise.all([...])` 逻辑
+- **自定义模型**: 替换 `public/live2d/assets` 下的模型文件并调整引用路径
 
 ## 🧩 功能模块
 
@@ -159,41 +165,3 @@ npm run dev
 - **文档处理**: 文档解析、向量化和语义理解
 - **知识问答**: 基于文档内容的智能问答和知识推理
 - **笔记生成**: 自动生成和组织文档笔记
-
-## 📡 接口文档
-
-- Readify Server API: http://localhost:8080/api/v1/swagger-ui/index.html
-- Readify AGI API: http://localhost:8090/docs
-
-## 📋 开发指南
-
-### 代码风格
-
-- 前端: 遵循ESLint和Vue风格指南
-- 后端: 遵循Google Java风格指南
-- AGI: 遵循PEP 8 Python风格指南
-
-### 开发流程
-
-1. 从主分支创建特性分支
-2. 开发并测试新功能
-3. 提交Pull Request进行代码审查
-4. 合并到主分支
-
-## 🤝 贡献指南
-
-1. Fork 本项目
-2. 创建您的特性分支 (`git checkout -b feature/amazing-feature`)
-3. 提交您的更改 (`git commit -m 'Add some amazing feature'`)
-4. 推送到分支 (`git push origin feature/amazing-feature`)
-5. 打开一个 Pull Request
-
-## 📄 许可证
-
-[MIT License](LICENSE)
-
----
-
-<div align="center">
-  <p>Made with ❤️ by Readify</p>
-</div> 

@@ -1,26 +1,11 @@
-# 📚 Readify AGI
+# 📚 科小记 AGI
 
 <div align="center">
-  <h3>Readify智能读书助手的AGI底座</h3>
+  <h3>科小记智能读书助手的AGI底座</h3>
   <p>基于多智能体协作的复杂任务解决方案</p>
   
-  ![Python](https://img.shields.io/badge/Python-3.9-3776AB?style=for-the-badge&logo=python&logoColor=white)
-  ![FastAPI](https://img.shields.io/badge/FastAPI-0.100.0+-009688?style=for-the-badge&logo=fastapi&logoColor=white)
-  ![OpenAI](https://img.shields.io/badge/OpenAI-412991?style=for-the-badge&logo=openai&logoColor=white)
-  ![LangChain](https://img.shields.io/badge/LangChain-2C2D72?style=for-the-badge&logo=chainlink&logoColor=white)
 </div>
 
-## ✨ 功能特点
-
-Readify AGI 是 Readify 智能读书助手的 AGI 底座，主要有如下能力:
-
-- 🧠 **智能任务分发** - 基于用户查询自动选择最合适的专业 Agent
-- 🤝 **多Agent协作** - 将复杂任务分解为子任务，由不同专业 Agent 协同完成
-- 🔄 **工作流管理** - 定义和执行复杂的多 Agent 协作工作流
-- 📝 **流式输出** - 实时展示思考过程和工具执行结果
-- 💬 **会话记忆** - 保存对话历史和思考过程，支持上下文理解和长期记忆
-- 📄 **文档处理** - 支持文档解析、向量化和语义搜索
-- ✏️ **文本修复** - 智能识别和修复文本问题
 
 ## 🛠️ 技术栈
 
@@ -139,25 +124,3 @@ await coordinator.generate_stream_response(
 - **知识问答**: 基于文档内容的智能问答和知识推理
 - **笔记管理**: 自动生成和组织文档笔记
 - **实时反馈**: 提供流式输出，实时展示智能体思考过程
-
-## 📡 API 接口
-
-访问 `http://localhost:8090/docs` 查看完整的 API 文档
-
-## 🤝 贡献指南
-
-1. Fork 本项目
-2. 创建您的特性分支 (`git checkout -b feature/amazing-feature`)
-3. 提交您的更改 (`git commit -m 'Add some amazing feature'`)
-4. 推送到分支 (`git push origin feature/amazing-feature`)
-5. 打开一个 Pull Request
-
-## 📄 许可证
-
-[MIT License](LICENSE)
-
----
-
-<div align="center">
-  <p>Made with ❤️ by Readify AGI</p>
-</div> 

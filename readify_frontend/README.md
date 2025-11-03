@@ -1,19 +1,15 @@
-# 📚 Readify
+# 📚 科小记
 
 <div align="center">
-  <img src="public/readify-logo.png" alt="Readify Logo" width="180">
+  
   <h3>智能阅读笔记助手</h3>
   <p>基于AI的智能阅读笔记和思维导图生成工具</p>
   
-  ![Vue.js](https://img.shields.io/badge/Vue.js-4FC08D?style=for-the-badge&logo=vue.js&logoColor=white)
-  ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
-  ![Element Plus](https://img.shields.io/badge/Element_Plus-409EFF?style=for-the-badge&logo=element&logoColor=white)
-  ![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
 </div>
 
 ## ✨ 功能特点
 
-Readify是一个强大的阅读笔记助手，帮助用户轻松整理知识并生成直观的思维导图。
+科小记是一个强大的阅读笔记助手，帮助用户轻松整理知识并生成直观的思维导图。
 
 - 📝 **智能笔记生成** - 自动分析文档内容，生成结构化笔记
 - 🧠 **思维导图可视化** - 直观展示知识结构和关系
@@ -22,16 +18,8 @@ Readify是一个强大的阅读笔记助手，帮助用户轻松整理知识并�
 - 🔄 **实时交互反馈** - 思考过程实时展示，提供更好的用户体验
 - 📱 **响应式设计** - 适配不同设备屏幕尺寸
 
-## 🛠️ 技术栈
 
-- **前端框架**: Vue 3, TypeScript
-- **UI组件**: Element Plus
-- **构建工具**: Vite
-- **状态管理**: Vuex
-- **路由管理**: Vue Router
-- **HTTP客户端**: Axios
-- **可视化**: D3.js, Markmap
-- **Markdown处理**: Marked, Markdown-it
+
 
 ## 📋 前提条件
 
@@ -73,6 +61,21 @@ npm run build
 npm run preview
 ```
 
+## 🎎 数字看板娘（Live2D）
+
+前端首页已内置 Live2D 数字看板娘，默认在 `src/views/Home.vue` 中启用并渲染到 `#live2dcanvas`。
+
+- **资源位置**: `public/live2d/`
+  - 模型: `assets/Epsilon2.1.model.json` 及其依赖
+  - 脚本: `/live2d/device.min.js`, `/live2d/script.js`
+- **初始化方式**: `Home.vue` 中动态加载脚本并调用
+  ```js
+  loadlive2d('live2dcanvas', '/live2d/assets/Epsilon2.1.model.json', 1.0)
+  ```
+- **交互说明**: 支持拖拽移动、滚轮缩放、双击重置位置与大小
+- **关闭/禁用**: 注释 `Home.vue` 中 Live2D 脚本加载与 `<canvas id="live2dcanvas">`，或移除对应 `Promise.all([...])` 逻辑
+- **自定义模型**: 替换 `public/live2d/assets` 下的模型文件并调整引用路径
+
 ## 🧩 项目结构
 
 ```
@@ -95,15 +98,6 @@ readify/
 └── vite.config.ts      # Vite配置
 ```
 
-## 📸 屏幕截图
-
-<div align="center">
-  <img src="public/screenshot-1.png" alt="主界面" width="80%">
-  <p><i>Readify主界面</i></p>
-  
-  <img src="public/screenshot-2.png" alt="思维导图" width="80%">
-  <p><i>思维导图视图</i></p>
-</div>
 
 ## 🔧 配置
 
@@ -113,16 +107,3 @@ readify/
 VITE_API_BASE_URL=http://your-api-url
 ```
 
-## 📄 许可证
-
-[MIT License](LICENSE)
-
-## 🤝 贡献
-
-欢迎贡献! 请查看 [贡献指南](CONTRIBUTING.md) 了解更多信息。
-
----
-
-<div align="center">
-  <p>Made with ❤️ by Your</p>
-</div>
