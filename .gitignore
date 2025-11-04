@@ -49,16 +49,16 @@ desktop.ini
 *.log
 logs/
 
-# Java / Maven / Spring
-HELP.md
-target/
-!.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
-application*.yml
-application*.properties
-!application-example.yml
-!application-example.properties
+# # Java / Maven / Spring
+# HELP.md
+# target/
+# !.mvn/wrapper/maven-wrapper.jar
+# !**/src/main/**/target/
+# !**/src/test/**/target/
+# application*.yml
+# application*.properties
+# !application-example.yml
+# !application-example.properties
 
 ### STS ###
 .apt_generated
@@ -96,15 +96,15 @@ yarn-error.log*
 .yarn-integrity
 .pnp.*
 
-# 自定义配置文件 (Custom config files)
-**/config/local.js
-**/config/local.json
-**/config/private.js
-**/config/private.json
-config.local.js
-config.local.json
-readify_server/.mvn/wrapper/maven-wrapper.properties
-readify_server/src/main/resources/application.yml
+# # 自定义配置文件 (Custom config files)
+# **/config/local.js
+# **/config/local.json
+# **/config/private.js
+# **/config/private.json
+# config.local.js
+# config.local.json
+# readify_server/.mvn/wrapper/maven-wrapper.properties
+# readify_server/src/main/resources/application.yml
 
 # 系统生成的文件 (System generated files)
 *.class
@@ -114,10 +114,6 @@ readify_server/src/main/resources/application.yml
 *.tar.gz
 *.rar
 
-# 数据库文件 (Database files)
-*.sqlite
-*.db
-*.sql
 
 # 安全相关 (Security related)
 *.key
