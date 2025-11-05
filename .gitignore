@@ -1,122 +1,122 @@
-# Python
-__pycache__/
-*.py[cod]
-*$py.class
-*.so
-.Python
-env/
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-*.egg-info/
-.installed.cfg
-*.egg
-.pytest_cache/
+# # Python
+# __pycache__/
+# *.py[cod]
+# *$py.class
+# *.so
+# .Python
+# env/
+# build/
+# develop-eggs/
+# dist/
+# downloads/
+# eggs/
+# .eggs/
+# lib/
+# lib64/
+# parts/
+# sdist/
+# var/
+# *.egg-info/
+# .installed.cfg
+# *.egg
+# .pytest_cache/
 
-# Environment variables
-.env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-*.env
+# # Environment variables
+# .env
+# .env.local
+# .env.development.local
+# .env.test.local
+# .env.production.local
+# *.env
 
-# IDE
-.idea/
-.vscode/
-*.swp
-*.swo
-.project
-.classpath
-.settings/
-*.sublime-workspace
-.cursor/
+# # IDE
+# .idea/
+# .vscode/
+# *.swp
+# *.swo
+# .project
+# .classpath
+# .settings/
+# *.sublime-workspace
+# .cursor/
 
-# Misc
-.DS_Store 
-Thumbs.db
-desktop.ini
-*.tmp
-*.bak
-*.log
-logs/
+# # Misc
+# .DS_Store 
+# Thumbs.db
+# desktop.ini
+# *.tmp
+# *.bak
+# *.log
+# logs/
 
-# # Java / Maven / Spring
-# HELP.md
-# target/
-# !.mvn/wrapper/maven-wrapper.jar
-# !**/src/main/**/target/
-# !**/src/test/**/target/
-# application*.yml
-# application*.properties
-# !application-example.yml
-# !application-example.properties
+# # # Java / Maven / Spring
+# # HELP.md
+# # target/
+# # !.mvn/wrapper/maven-wrapper.jar
+# # !**/src/main/**/target/
+# # !**/src/test/**/target/
+# # application*.yml
+# # application*.properties
+# # !application-example.yml
+# # !application-example.properties
 
-### STS ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
+# ### STS ###
+# .apt_generated
+# .classpath
+# .factorypath
+# .project
+# .settings
+# .springBeans
+# .sts4-cache
 
-### IntelliJ IDEA ###
-.idea
-*.iws
-*.iml
-*.ipr
+# ### IntelliJ IDEA ###
+# .idea
+# *.iws
+# *.iml
+# *.ipr
 
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
-build/
-!**/src/main/**/build/
-!**/src/test/**/build/
+# ### NetBeans ###
+# /nbproject/private/
+# /nbbuild/
+# /dist/
+# /nbdist/
+# /.nb-gradle/
+# build/
+# !**/src/main/**/build/
+# !**/src/test/**/build/
 
-# Node.js
-node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-.pnpm-debug.log*
-.yarn/
-.npm/
-.yarn-integrity
-.pnp.*
+# # Node.js
+# node_modules/
+# npm-debug.log*
+# yarn-debug.log*
+# yarn-error.log*
+# .pnpm-debug.log*
+# .yarn/
+# .npm/
+# .yarn-integrity
+# .pnp.*
 
-# # 自定义配置文件 (Custom config files)
-# **/config/local.js
-# **/config/local.json
-# **/config/private.js
-# **/config/private.json
-# config.local.js
-# config.local.json
-# readify_server/.mvn/wrapper/maven-wrapper.properties
-# readify_server/src/main/resources/application.yml
+# # # 自定义配置文件 (Custom config files)
+# # **/config/local.js
+# # **/config/local.json
+# # **/config/private.js
+# # **/config/private.json
+# # config.local.js
+# # config.local.json
+# # readify_server/.mvn/wrapper/maven-wrapper.properties
+# # readify_server/src/main/resources/application.yml
 
-# 系统生成的文件 (System generated files)
-*.class
-*.war
-*.ear
-*.zip
-*.tar.gz
-*.rar
+# # 系统生成的文件 (System generated files)
+# *.class
+# *.war
+# *.ear
+# *.zip
+# *.tar.gz
+# *.rar
 
 
-# 安全相关 (Security related)
-*.key
-*.pem
-*.cert
-*.p12
+# # 安全相关 (Security related)
+# *.key
+# *.pem
+# *.cert
+# *.p12
