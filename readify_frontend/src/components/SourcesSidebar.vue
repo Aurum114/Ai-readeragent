@@ -96,8 +96,8 @@ const getFileExtension = (filename: string) => {
 /* 侧边栏通用样式 */
 .sidebar {
   width: 300px;
-  background: #ffffff;
-  border-radius: 8px;
+  background: var(--bg-panel);
+  border-radius: 12px;
   display: flex;
   flex-direction: column;
   transition: all 0.3s ease;
@@ -118,14 +118,14 @@ const getFileExtension = (filename: string) => {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid #f0f0f0;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 
 .sidebar-header h3 {
   margin: 0;
   font-size: 16px;
   font-weight: 500;
-  color: #303133;
+  color: var(--text-primary);
 }
 
 .collapse-btn {
@@ -448,7 +448,7 @@ const getFileExtension = (filename: string) => {
 }
 
 .source-item .source-name {
-  color: #303133;
+  color: var(--text-primary);
   font-size: 14px;
   white-space: nowrap;
   overflow: hidden;
@@ -467,16 +467,16 @@ const getFileExtension = (filename: string) => {
   justify-content: center;
   width: 32px;
   height: 32px;
-  border: 1px solid #f56c6c;
+  border: 1px solid var(--el-color-primary);
   border-radius: 4px;
   font-size: 12px;
-  color: #f56c6c;
+  color: var(--el-color-primary);
   font-weight: 500;
   flex-shrink: 0;
 }
 
 .source-item .source-name > span {
-  color: #303133;
+  color: var(--text-primary);
   flex: 1;
   min-width: 0;
   overflow: hidden;
@@ -497,7 +497,7 @@ const getFileExtension = (filename: string) => {
 
 .source-item .el-loading {
   font-size: 16px;
-  color: #909399;
+  color: var(--text-secondary);
 }
 
 .source-item .el-loading.is-loading {
@@ -505,7 +505,7 @@ const getFileExtension = (filename: string) => {
 }
 
 .source-item:hover {
-  background-color: #f5f7fa;
+  background-color: rgba(255,255,255,0.06);
   padding-left: 8px;
   padding-right: 8px;
   margin-left: -8px;
@@ -523,9 +523,7 @@ const getFileExtension = (filename: string) => {
   transition: all 0.3s ease;
 }
 
-.source-item:hover :deep(.el-checkbox .el-checkbox__input:not(.is-checked) .el-checkbox__inner) {
-  border-color: #303133;
-}
+.source-item:hover :deep(.el-checkbox .el-checkbox__input:not(.is-checked) .el-checkbox__inner) { border-color: var(--text-primary); }
 
 @keyframes rotating {
   0% {
@@ -542,9 +540,9 @@ const getFileExtension = (filename: string) => {
   --el-checkbox-input-height: 16px;
   --el-checkbox-input-width: 16px;
   --el-checkbox-border-radius: 3px;
-  --el-checkbox-checked-text-color: #303133;
-  --el-checkbox-checked-bg-color: #303133;
-  --el-checkbox-checked-border-color: #303133;
+  --el-checkbox-checked-text-color: var(--text-primary);
+  --el-checkbox-checked-bg-color: var(--el-color-primary);
+  --el-checkbox-checked-border-color: var(--el-color-primary);
   margin-right: 0;
 }
 

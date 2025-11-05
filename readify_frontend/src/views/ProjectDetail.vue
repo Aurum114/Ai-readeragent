@@ -860,7 +860,7 @@ onMounted(async () => {
   flex: 1;
   width: 100%;
   overflow: hidden;
-  background-color: #fff0f6;
+  background-color: transparent;
   padding: 0 24px 16px 24px;
 }
 

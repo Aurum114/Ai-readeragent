@@ -10,7 +10,7 @@
         <div class="decoration-image"></div>
       </div>
       <div class="login-right">
-        <div class="login-box">
+        <div class="login-box panel">
           <h1>登录</h1>
           <el-form :model="form" :rules="rules" ref="formRef" label-position="top">
             <el-form-item prop="username">
@@ -88,32 +88,31 @@ const handleLogin = async () => {
     loading.value = false
   }
 }
+
 </script>
 
 <style scoped>
 .login-container {
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  border-radius: 16px;
 }
 
 .login-content {
   width: 100%;
   height: 100%;
   display: flex;
-  background: #fff;
-  border-radius: 16px;
+  background: transparent;
   overflow: hidden;
 }
 
 .login-left {
   width: 50%;
   position: relative;
-  background: linear-gradient(135deg, #ff7aa2 0%, #ff4d88 100%);
+  background: linear-gradient(135deg, #ec6090 0%, #bd4d73 100%);
   padding: 40px;
   color: #fff;
   display: flex;
@@ -163,20 +162,23 @@ const handleLogin = async () => {
   align-items: center;
   justify-content: center;
   padding: 40px;
-  background: #fff;
+  background: transparent;
 }
 
 .login-box {
   width: 100%;
-  max-width: 360px;
+  max-width: 380px;
+  padding: 28px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
 }
 
 .login-box h1 {
   text-align: center;
-  color: #333;
-  margin-bottom: 30px;
-  font-size: 28px;
-  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: 24px;
+  font-size: 24px;
+  font-weight: 600;
 }
 
 .submit-btn {
@@ -184,13 +186,13 @@ const handleLogin = async () => {
   padding: 12px 0;
   font-size: 16px;
   margin-top: 10px;
-  border-radius: 8px;
+  border-radius: 24px;
 }
 
 .register-link {
   text-align: center;
-  margin-top: 20px;
-  color: #666;
+  margin-top: 16px;
+  color: var(--text-secondary);
 }
 
 :deep(.el-form-item) {
@@ -199,19 +201,21 @@ const handleLogin = async () => {
 
 :deep(.el-form-item__label) {
   font-size: 14px;
-  color: #606266;
-  line-height: 40px;
-  padding: 0 12px 0 0;
+  color: var(--text-secondary);
+  line-height: 32px;
+  padding: 0 8px 4px 0;
 }
 
 :deep(.el-input__wrapper) {
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-  border-radius: 8px;
+  box-shadow: none;
+  border-radius: 10px;
+  background: var(--el-fill-color-light);
 }
 
 :deep(.el-input__inner) {
   height: 40px;
   line-height: 40px;
+  color: var(--text-primary);
 }
 
 :deep(.el-button--link) {

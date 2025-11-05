@@ -10,7 +10,7 @@
         <div class="decoration-image"></div>
       </div>
       <div class="register-right">
-        <div class="register-box">
+        <div class="register-box panel">
           <h1>注册</h1>
           <el-form :model="form" :rules="rules" ref="formRef" label-width="80px">
             <el-form-item label="用户名" prop="username">
@@ -111,34 +111,11 @@ const handleRegister = async () => {
 </script>
 
 <style scoped>
-.register-container {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  border-radius: 16px;
-}
+.register-container { width: 100vw; height: 100vh; display: flex; justify-content: center; align-items: center; overflow: hidden; }
 
-.register-content {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  background: #fff;
-  border-radius: 16px;
-  overflow: hidden;
-}
+.register-content { width: 100%; height: 100%; display: flex; background: transparent; overflow: hidden; }
 
-.register-left {
-  width: 50%;
-  position: relative;
-  background: linear-gradient(135deg, #ff7aa2 0%, #ff4d88 100%);
-  padding: 40px;
-  color: #fff;
-  display: flex;
-  flex-direction: column;
-}
+.register-left { width: 50%; position: relative; background: linear-gradient(135deg, #ec6090 0%, #bd4d73 100%); padding: 40px; color: #fff; display: flex; flex-direction: column; }
 
 .welcome-text {
   position: relative;
@@ -177,27 +154,11 @@ const handleRegister = async () => {
   opacity: 0.2;
 }
 
-.register-right {
-  width: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 40px;
-  background: #fff;
-}
+.register-right { width: 50%; display: flex; align-items: center; justify-content: center; padding: 40px; background: transparent; }
 
-.register-box {
-  width: 100%;
-  max-width: 360px;
-}
+.register-box { width: 100%; max-width: 420px; padding: 28px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.25); }
 
-.register-box h1 {
-  text-align: center;
-  color: #333;
-  margin-bottom: 30px;
-  font-size: 28px;
-  font-weight: 500;
-}
+.register-box h1 { text-align: center; color: var(--text-primary); margin-bottom: 24px; font-size: 24px; font-weight: 600; }
 
 .submit-btn {
   width: 100%;
@@ -207,32 +168,17 @@ const handleRegister = async () => {
   border-radius: 8px;
 }
 
-.login-link {
-  text-align: center;
-  margin-top: 20px;
-  color: #666;
-}
+.login-link { text-align: center; margin-top: 16px; color: var(--text-secondary); }
 
 :deep(.el-form-item) {
   margin-bottom: 20px;
 }
 
-:deep(.el-form-item__label) {
-  font-size: 14px;
-  color: #606266;
-  line-height: 40px;
-  padding: 0 12px 0 0;
-}
+:deep(.el-form-item__label) { font-size: 14px; color: var(--text-secondary); line-height: 32px; padding: 0 8px 4px 0; }
 
-:deep(.el-input__wrapper) {
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-  border-radius: 8px;
-}
+:deep(.el-input__wrapper) { box-shadow: none; border-radius: 10px; background: var(--el-fill-color-light); }
 
-:deep(.el-input__inner) {
-  height: 40px;
-  line-height: 40px;
-}
+:deep(.el-input__inner) { height: 40px; line-height: 40px; color: var(--text-primary); }
 
 :deep(.el-button--link) {
   font-size: 14px;

@@ -176,8 +176,8 @@ const handleDeleteNote = async (note: MindMapVO) => {
 /* 侧边栏通用样式 */
 .sidebar {
   width: 300px;
-  background: #ffffff;
-  border-radius: 8px;
+  background: var(--bg-panel);
+  border-radius: 12px;
   display: flex;
   flex-direction: column;
   transition: all 0.3s ease;
@@ -198,14 +198,14 @@ const handleDeleteNote = async (note: MindMapVO) => {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid #f0f0f0;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 
 .sidebar-header h3 {
   margin: 0;
   font-size: 16px;
   font-weight: 500;
-  color: #303133;
+  color: var(--text-primary);
 }
 
 .collapse-btn {
@@ -226,7 +226,7 @@ const handleDeleteNote = async (note: MindMapVO) => {
 }
 
 .collapse-btn:hover {
-  box-shadow: 0 0 16px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0 16px rgba(0, 0, 0, 0.2);
   transform: scale(1.05);
 }
 

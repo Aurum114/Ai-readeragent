@@ -16,8 +16,8 @@ import Chat from './Chat.vue'
 <style scoped>
 .chat-container {
   flex: 1;
-  background: #ffffff;
-  border-radius: 8px;
+  background: var(--bg-panel);
+  border-radius: 12px;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -28,14 +28,14 @@ import Chat from './Chat.vue'
   padding: 0 16px;
   display: flex;
   align-items: center;
-  border-bottom: 1px solid #f0f0f0;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 
 .chat-header h3 {
   margin: 0;
   font-size: 16px;
   font-weight: 500;
-  color: #303133;
+  color: var(--text-primary);
 }
 
 .chat-content {

@@ -357,17 +357,15 @@ onMounted(() => {
   overflow: hidden;
 }
 
-:deep(.navbar) {
-  background-color: #ffffff;
-}
+  :deep(.navbar) { background-color: var(--bg-panel); }
 
-.main-content {
-  flex: 1;
-  width: 100%;
-  overflow-y: auto;
-  background-color: #fff0f6;
-  padding: 24px;
-}
+  .main-content {
+    flex: 1;
+    width: 100%;
+    overflow-y: auto;
+    background-color: transparent;
+    padding: 24px;
+  }
 
 .content-container {
   width: 80%;
@@ -381,16 +379,16 @@ onMounted(() => {
   text-align: left;
 }
 
-.welcome-section h1 {
-  font-size: 48px;
-  font-weight: 700;
-  margin: 0 0 60px 0;
-  padding: 40px 0;
-  color: #000;
-  text-align: left;
-  letter-spacing: -1px;
-  font-family: 'Playfair Display', 'Times New Roman', Georgia, serif;
-}
+  .welcome-section h1 {
+    font-size: 48px;
+    font-weight: 700;
+    margin: 0 0 60px 0;
+    padding: 40px 0;
+    color: #ffffff;
+    text-align: left;
+    letter-spacing: -1px;
+    font-family: 'Playfair Display', 'Times New Roman', Georgia, serif;
+  }
 
 .section-divider {
   padding-bottom: 20px;
@@ -422,21 +420,21 @@ onMounted(() => {
   align-items: center;
 }
 
-.action-bar :deep(.el-button--primary) {
-  background: #000;
-  border: none;
-  padding: 10px 24px;
-  height: auto;
-  transition: all 0.3s;
-  border-radius: 24px;
-  color: white;
-}
+  .action-bar :deep(.el-button--primary) {
+    background: var(--el-color-primary);
+    border: none;
+    padding: 10px 24px;
+    height: auto;
+    transition: all 0.3s;
+    border-radius: 24px;
+    color: white;
+  }
 
-.action-bar :deep(.el-button--primary:hover) {
-  background: #333;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
+  .action-bar :deep(.el-button--primary:hover) {
+    filter: brightness(1.05);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(236, 96, 144, 0.25);
+  }
 
 .projects-grid {
   min-height: 200px;
@@ -453,36 +451,37 @@ onMounted(() => {
   flex: 0 0 20%;
 }
 
-.action-right :deep(.el-button-group) {
-  border: 1px solid #dcdfe6;
-  border-radius: 24px;
-  overflow: hidden;
-  display: flex;
-  align-items: stretch;
-  height: 40px;
-}
+  .action-right :deep(.el-button-group) {
+    border: 1px solid #3a3c3d;
+    border-radius: 24px;
+    overflow: hidden;
+    display: flex;
+    align-items: stretch;
+    height: 40px;
+    background: var(--bg-panel);
+  }
 
-.action-right :deep(.el-button-group .el-button) {
-  margin: 0;
-  border: none;
-  padding: 0 20px;
-  border-radius: 0;
-  color: #606266;
-  background: #ffffff;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background-color 0.3s, color 0.3s;
-  transform: none !important;
-  min-width: 100px;
-  position: relative;
-}
+  .action-right :deep(.el-button-group .el-button) {
+    margin: 0;
+    border: none;
+    padding: 0 20px;
+    border-radius: 0;
+    color: var(--text-secondary);
+    background: var(--bg-panel);
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s, color 0.3s;
+    transform: none !important;
+    min-width: 100px;
+    position: relative;
+  }
 
-.action-right :deep(.el-button-group .el-button.el-button--primary) {
-  background: #000;
-  color: #ffffff;
-}
+  .action-right :deep(.el-button-group .el-button.el-button--primary) {
+    background: var(--el-color-primary);
+    color: #ffffff;
+  }
 
 .action-right :deep(.el-button-group .el-button.el-button--primary::before) {
   content: "✓";

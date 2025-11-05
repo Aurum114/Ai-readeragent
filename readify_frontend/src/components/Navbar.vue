@@ -78,7 +78,9 @@ const handleCommand = async (command: string) => {
   align-items: center;
   padding: 0 32px;
   height: 64px;
-  background-color: #ffffff;
+  background-color: var(--bg-panel);
+  box-shadow: none;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
   position: sticky;
   top: 0;
   z-index: 100;
@@ -119,7 +121,7 @@ const handleCommand = async (command: string) => {
 
 .nav-left .project-title {
   font-size: 22px;
-  color: #000000;
+  color: #ffffff;
   margin: 0;
   font-weight: 600;
   font-family: 'Montserrat', sans-serif;
@@ -132,16 +134,14 @@ const handleCommand = async (command: string) => {
 }
 
 .nav-link {
-  color: #606266;
+  color: var(--text-secondary);
   text-decoration: none;
   padding: 0 16px;
   font-size: 14px;
   transition: all 0.3s;
 }
 
-.nav-link:hover, .router-link-active {
-  color: #ff7aa2;
-}
+.nav-link:hover, .router-link-active { color: var(--el-color-primary); }
 
 .nav-right {
   display: flex;
@@ -157,13 +157,11 @@ const handleCommand = async (command: string) => {
   transition: background-color 0.3s;
 }
 
-.user-profile:hover {
-  background-color: #f5f7fa;
-}
+.user-profile:hover { background-color: rgba(255,255,255,0.06); }
 
 .username {
   margin: 0 8px;
   font-size: 14px;
-  color: #606266;
+  color: #dddddd;
 }
 </style> 
