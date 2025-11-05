@@ -8,8 +8,8 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-11-05T13:30:57+0800",
-    comments = "version: 1.5.5.Final, compiler: javac, environment: Java 21.0.2 (Oracle Corporation)"
+    date = "2025-11-05T18:36:44+0800",
+    comments = "version: 1.5.5.Final, compiler: Eclipse JDT (IDE) 3.44.0.v20251023-0518, environment: Java 21.0.8 (Eclipse Adoptium)"
 )
 public class MindMapNodeTreeVOConverterImpl implements MindMapNodeTreeVOConverter {
 
@@ -21,17 +21,17 @@ public class MindMapNodeTreeVOConverterImpl implements MindMapNodeTreeVOConverte
 
         MindMapNodeTreeVO mindMapNodeTreeVO = new MindMapNodeTreeVO();
 
-        mindMapNodeTreeVO.setId( tree.getId() );
-        mindMapNodeTreeVO.setProjectId( tree.getProjectId() );
+        mindMapNodeTreeVO.setChildren( mindMapNodeTreeListToMindMapNodeTreeVOList( tree.getChildren() ) );
+        mindMapNodeTreeVO.setContent( tree.getContent() );
+        mindMapNodeTreeVO.setCreatedTime( tree.getCreatedTime() );
         mindMapNodeTreeVO.setFileId( tree.getFileId() );
+        mindMapNodeTreeVO.setId( tree.getId() );
+        mindMapNodeTreeVO.setLevel( tree.getLevel() );
         mindMapNodeTreeVO.setMindMapId( tree.getMindMapId() );
         mindMapNodeTreeVO.setParentId( tree.getParentId() );
-        mindMapNodeTreeVO.setContent( tree.getContent() );
+        mindMapNodeTreeVO.setProjectId( tree.getProjectId() );
         mindMapNodeTreeVO.setSequence( tree.getSequence() );
-        mindMapNodeTreeVO.setLevel( tree.getLevel() );
-        mindMapNodeTreeVO.setCreatedTime( tree.getCreatedTime() );
         mindMapNodeTreeVO.setUpdatedTime( tree.getUpdatedTime() );
-        mindMapNodeTreeVO.setChildren( mindMapNodeTreeListToMindMapNodeTreeVOList( tree.getChildren() ) );
 
         return mindMapNodeTreeVO;
     }
@@ -44,17 +44,17 @@ public class MindMapNodeTreeVOConverterImpl implements MindMapNodeTreeVOConverte
 
         MindMapNodeTree mindMapNodeTree = new MindMapNodeTree();
 
-        mindMapNodeTree.setId( vo.getId() );
-        mindMapNodeTree.setProjectId( vo.getProjectId() );
+        mindMapNodeTree.setChildren( mindMapNodeTreeVOListToMindMapNodeTreeList( vo.getChildren() ) );
+        mindMapNodeTree.setContent( vo.getContent() );
+        mindMapNodeTree.setCreatedTime( vo.getCreatedTime() );
         mindMapNodeTree.setFileId( vo.getFileId() );
+        mindMapNodeTree.setId( vo.getId() );
+        mindMapNodeTree.setLevel( vo.getLevel() );
         mindMapNodeTree.setMindMapId( vo.getMindMapId() );
         mindMapNodeTree.setParentId( vo.getParentId() );
-        mindMapNodeTree.setContent( vo.getContent() );
+        mindMapNodeTree.setProjectId( vo.getProjectId() );
         mindMapNodeTree.setSequence( vo.getSequence() );
-        mindMapNodeTree.setLevel( vo.getLevel() );
-        mindMapNodeTree.setCreatedTime( vo.getCreatedTime() );
         mindMapNodeTree.setUpdatedTime( vo.getUpdatedTime() );
-        mindMapNodeTree.setChildren( mindMapNodeTreeVOListToMindMapNodeTreeList( vo.getChildren() ) );
 
         return mindMapNodeTree;
     }

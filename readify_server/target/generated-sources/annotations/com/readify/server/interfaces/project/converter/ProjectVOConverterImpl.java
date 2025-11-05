@@ -8,8 +8,8 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-11-05T13:30:57+0800",
-    comments = "version: 1.5.5.Final, compiler: javac, environment: Java 21.0.2 (Oracle Corporation)"
+    date = "2025-11-05T18:36:44+0800",
+    comments = "version: 1.5.5.Final, compiler: Eclipse JDT (IDE) 3.44.0.v20251023-0518, environment: Java 21.0.8 (Eclipse Adoptium)"
 )
 public class ProjectVOConverterImpl implements ProjectVOConverter {
 
@@ -21,12 +21,12 @@ public class ProjectVOConverterImpl implements ProjectVOConverter {
 
         ProjectVO projectVO = new ProjectVO();
 
-        projectVO.setId( project.getId() );
-        projectVO.setUserId( project.getUserId() );
-        projectVO.setName( project.getName() );
-        projectVO.setDescription( project.getDescription() );
         projectVO.setCreateTime( project.getCreateTime() );
+        projectVO.setDescription( project.getDescription() );
+        projectVO.setId( project.getId() );
+        projectVO.setName( project.getName() );
         projectVO.setUpdateTime( project.getUpdateTime() );
+        projectVO.setUserId( project.getUserId() );
 
         return projectVO;
     }
@@ -39,12 +39,12 @@ public class ProjectVOConverterImpl implements ProjectVOConverter {
 
         Project project = new Project();
 
-        project.setId( projectVO.getId() );
-        project.setUserId( projectVO.getUserId() );
-        project.setName( projectVO.getName() );
-        project.setDescription( projectVO.getDescription() );
         project.setCreateTime( projectVO.getCreateTime() );
+        project.setDescription( projectVO.getDescription() );
+        project.setId( projectVO.getId() );
+        project.setName( projectVO.getName() );
         project.setUpdateTime( projectVO.getUpdateTime() );
+        project.setUserId( projectVO.getUserId() );
 
         return project;
     }
@@ -69,11 +69,11 @@ public class ProjectVOConverterImpl implements ProjectVOConverter {
             return;
         }
 
-        projectVO.setId( project.getId() );
-        projectVO.setUserId( project.getUserId() );
-        projectVO.setName( project.getName() );
-        projectVO.setDescription( project.getDescription() );
         projectVO.setCreateTime( project.getCreateTime() );
+        projectVO.setDescription( project.getDescription() );
+        projectVO.setId( project.getId() );
+        projectVO.setName( project.getName() );
         projectVO.setUpdateTime( project.getUpdateTime() );
+        projectVO.setUserId( project.getUserId() );
     }
 }

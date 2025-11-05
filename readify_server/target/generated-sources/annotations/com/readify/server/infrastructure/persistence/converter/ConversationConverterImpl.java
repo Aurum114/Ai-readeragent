@@ -9,8 +9,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-11-05T13:30:57+0800",
-    comments = "version: 1.5.5.Final, compiler: javac, environment: Java 21.0.2 (Oracle Corporation)"
+    date = "2025-11-05T18:36:44+0800",
+    comments = "version: 1.5.5.Final, compiler: Eclipse JDT (IDE) 3.44.0.v20251023-0518, environment: Java 21.0.8 (Eclipse Adoptium)"
 )
 @Component
 public class ConversationConverterImpl implements ConversationConverter {
@@ -23,14 +23,14 @@ public class ConversationConverterImpl implements ConversationConverter {
 
         ConversationHistory.ConversationHistoryBuilder conversationHistory = ConversationHistory.builder();
 
-        conversationHistory.id( entity.getId() );
-        conversationHistory.projectId( entity.getProjectId() );
-        conversationHistory.messageType( entity.getMessageType() );
         conversationHistory.content( entity.getContent() );
-        conversationHistory.priority( entity.getPriority() );
-        conversationHistory.isIncludedInContext( entity.getIsIncludedInContext() );
-        conversationHistory.sequence( entity.getSequence() );
         conversationHistory.createdAt( entity.getCreatedAt() );
+        conversationHistory.id( entity.getId() );
+        conversationHistory.isIncludedInContext( entity.getIsIncludedInContext() );
+        conversationHistory.messageType( entity.getMessageType() );
+        conversationHistory.priority( entity.getPriority() );
+        conversationHistory.projectId( entity.getProjectId() );
+        conversationHistory.sequence( entity.getSequence() );
         conversationHistory.updatedAt( entity.getUpdatedAt() );
 
         return conversationHistory.build();
@@ -44,14 +44,14 @@ public class ConversationConverterImpl implements ConversationConverter {
 
         ConversationHistoryEntity conversationHistoryEntity = new ConversationHistoryEntity();
 
-        conversationHistoryEntity.setId( domain.getId() );
-        conversationHistoryEntity.setProjectId( domain.getProjectId() );
-        conversationHistoryEntity.setMessageType( domain.getMessageType() );
         conversationHistoryEntity.setContent( domain.getContent() );
-        conversationHistoryEntity.setPriority( domain.getPriority() );
-        conversationHistoryEntity.setIsIncludedInContext( domain.getIsIncludedInContext() );
-        conversationHistoryEntity.setSequence( domain.getSequence() );
         conversationHistoryEntity.setCreatedAt( domain.getCreatedAt() );
+        conversationHistoryEntity.setId( domain.getId() );
+        conversationHistoryEntity.setIsIncludedInContext( domain.getIsIncludedInContext() );
+        conversationHistoryEntity.setMessageType( domain.getMessageType() );
+        conversationHistoryEntity.setPriority( domain.getPriority() );
+        conversationHistoryEntity.setProjectId( domain.getProjectId() );
+        conversationHistoryEntity.setSequence( domain.getSequence() );
         conversationHistoryEntity.setUpdatedAt( domain.getUpdatedAt() );
 
         return conversationHistoryEntity;
@@ -65,12 +65,12 @@ public class ConversationConverterImpl implements ConversationConverter {
 
         AssistantThinking.AssistantThinkingBuilder assistantThinking = AssistantThinking.builder();
 
-        assistantThinking.id( entity.getId() );
-        assistantThinking.projectId( entity.getProjectId() );
-        assistantThinking.userMessageId( entity.getUserMessageId() );
         assistantThinking.content( entity.getContent() );
         assistantThinking.createdAt( entity.getCreatedAt() );
+        assistantThinking.id( entity.getId() );
+        assistantThinking.projectId( entity.getProjectId() );
         assistantThinking.updatedAt( entity.getUpdatedAt() );
+        assistantThinking.userMessageId( entity.getUserMessageId() );
 
         return assistantThinking.build();
     }
@@ -83,12 +83,12 @@ public class ConversationConverterImpl implements ConversationConverter {
 
         AssistantThinkingEntity assistantThinkingEntity = new AssistantThinkingEntity();
 
-        assistantThinkingEntity.setId( domain.getId() );
-        assistantThinkingEntity.setProjectId( domain.getProjectId() );
-        assistantThinkingEntity.setUserMessageId( domain.getUserMessageId() );
         assistantThinkingEntity.setContent( domain.getContent() );
         assistantThinkingEntity.setCreatedAt( domain.getCreatedAt() );
+        assistantThinkingEntity.setId( domain.getId() );
+        assistantThinkingEntity.setProjectId( domain.getProjectId() );
         assistantThinkingEntity.setUpdatedAt( domain.getUpdatedAt() );
+        assistantThinkingEntity.setUserMessageId( domain.getUserMessageId() );
 
         return assistantThinkingEntity;
     }

@@ -198,12 +198,12 @@ class DocumentService:
             print(f"使用默认提示词模板: {prompt_template}")
         
         try:
-            # 使用Langchain调用模型
+            # 使用Langchain调用模型 - 切换到OpenAI国内版
             chat = ChatOpenAI(
-                model="gpt-4o-mini",
+                model="gpt-3.5-turbo",  # 国内版通常使用此模型
                 temperature=0.5,
-                api_key=settings.OPENAI_API_KEY,
-                base_url=settings.OPENAI_API_BASE,
+                api_key=settings.OPENAI_API_KEY_CHINA,
+                base_url=settings.OPENAI_API_BASE_CHINA,
             )
             
             # 创建聊天提示模板
@@ -229,4 +229,4 @@ class DocumentService:
             print(f"生成标签时发生错误: {str(e)}")
             import traceback
             traceback.print_exc()
-            return "" 
+            return ""

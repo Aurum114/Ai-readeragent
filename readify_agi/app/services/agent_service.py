@@ -15,6 +15,7 @@ from app.repositories.conversation_repository import ConversationRepository
 from app.repositories.document_repository import DocumentRepository
 from app.repositories.file_repository import FileRepository
 from app.repositories.project_repository import ProjectRepository
+from app.services.file_service import FileService
 
 
 def get_llm_config(vendor: str):
@@ -423,6 +424,66 @@ class AgentService:
                 elif msg["role"] == "assistant":
                     role_name = "助手"
                 history_text += f"{role_name}: {msg['content']}\n"
+
+        # 必检索：在生成前先做一次向量检索并将结果注入上下文
+        try:
+            file_service = FileService(self.file_repo)
+            # 根据问题意图动态调节top_k：摘要/概览类问题需要更高覆盖
+            q_lower = (query or "").lower()
+            summary_keywords = [
+                "总结", "简述", "主要内容", "概述", "概览", "提要", "大纲", "梳理", "归纳",
+                "summary", "overview", "abstract"
+            ]
+            dynamic_top_k = 40 if any(k in query for k in summary_keywords) or any(k in q_lower for k in ["summary", "overview", "abstract"]) else 5
+            search_results = await file_service.search_files_by_vector(
+                project_id=self.project_id,
+                input_text=query,
+                top_k=dynamic_top_k
+            )
+
+            if search_results and isinstance(search_results, list):
+                # 向前端流式提示已检索到文档片段
+                await callback({
+                    'type': 'thought',
+                    'content': f"已检索到 {len(search_results)} 条文档片段（top_k={dynamic_top_k}），将基于文档回答。",
+                    'project_id': self.project_id
+                })
+
+                # 格式化检索片段作为强约束上下文
+                snippets = []
+                for r in search_results:
+                    try:
+                        file_name = r.get('file_name', '未知文件')
+                        content = r.get('content', '')
+                        distance = r.get('distance', None)
+                        sim_str = f" 相似度: {1 - distance:.2f}" if isinstance(distance, (int, float)) else ""
+                        snippets.append(f"- 文件: {file_name}{sim_str}\n  片段: {content}")
+                    except Exception:
+                        continue
+
+                if snippets:
+                    retrieval_text = (
+                        "文档检索结果（必须优先基于以下片段作答；若证据不足需明确说明）：\n"
+                        + "\n".join(snippets)
+                    )
+                    history_text += f"\n{retrieval_text}\n"
+            else:
+                # 未命中文档时也提示，避免模型误以为有依据
+                await callback({
+                    'type': 'thought',
+                    'content': "未检索到相关文档片段，将在无法引用文档时明确说明。",
+                    'project_id': self.project_id
+                })
+        except Exception as e:
+            # 检索失败不阻断流程，但告知前端
+            await callback({
+                'type': 'tool_error',
+                'content': f'预检索失败: {str(e)}',
+                'tool_name': 'search_files_tool(pre-run)',
+                'input': query,
+                'error': str(e),
+                'project_id': self.project_id
+            })
 
         # 返回LLM输入上下文
         return {

@@ -6,8 +6,8 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-11-05T13:30:58+0800",
-    comments = "version: 1.5.5.Final, compiler: javac, environment: Java 21.0.2 (Oracle Corporation)"
+    date = "2025-11-05T18:36:44+0800",
+    comments = "version: 1.5.5.Final, compiler: Eclipse JDT (IDE) 3.44.0.v20251023-0518, environment: Java 21.0.8 (Eclipse Adoptium)"
 )
 public class ProjectFileConverterImpl implements ProjectFileConverter {
 
@@ -19,13 +19,13 @@ public class ProjectFileConverterImpl implements ProjectFileConverter {
 
         ProjectFileEntity projectFileEntity = new ProjectFileEntity();
 
+        projectFileEntity.setCreateTime( projectFile.getCreateTime() );
+        projectFileEntity.setDeleted( projectFile.getDeleted() );
+        projectFileEntity.setFileId( projectFile.getFileId() );
         projectFileEntity.setId( projectFile.getId() );
         projectFileEntity.setProjectId( projectFile.getProjectId() );
-        projectFileEntity.setUserId( projectFile.getUserId() );
-        projectFileEntity.setFileId( projectFile.getFileId() );
-        projectFileEntity.setCreateTime( projectFile.getCreateTime() );
         projectFileEntity.setUpdateTime( projectFile.getUpdateTime() );
-        projectFileEntity.setDeleted( projectFile.getDeleted() );
+        projectFileEntity.setUserId( projectFile.getUserId() );
 
         return projectFileEntity;
     }
@@ -38,13 +38,13 @@ public class ProjectFileConverterImpl implements ProjectFileConverter {
 
         ProjectFile.ProjectFileBuilder projectFile = ProjectFile.builder();
 
+        projectFile.createTime( entity.getCreateTime() );
+        projectFile.deleted( entity.getDeleted() );
+        projectFile.fileId( entity.getFileId() );
         projectFile.id( entity.getId() );
         projectFile.projectId( entity.getProjectId() );
-        projectFile.userId( entity.getUserId() );
-        projectFile.fileId( entity.getFileId() );
-        projectFile.createTime( entity.getCreateTime() );
         projectFile.updateTime( entity.getUpdateTime() );
-        projectFile.deleted( entity.getDeleted() );
+        projectFile.userId( entity.getUserId() );
 
         return projectFile.build();
     }

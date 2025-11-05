@@ -6,8 +6,8 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-11-05T13:30:58+0800",
-    comments = "version: 1.5.5.Final, compiler: javac, environment: Java 21.0.2 (Oracle Corporation)"
+    date = "2025-11-05T18:36:43+0800",
+    comments = "version: 1.5.5.Final, compiler: Eclipse JDT (IDE) 3.44.0.v20251023-0518, environment: Java 21.0.8 (Eclipse Adoptium)"
 )
 public class UserConverterImpl implements UserConverter {
 
@@ -19,11 +19,11 @@ public class UserConverterImpl implements UserConverter {
 
         UserEntity userEntity = new UserEntity();
 
-        userEntity.setId( user.getId() );
-        userEntity.setUsername( user.getUsername() );
-        userEntity.setEnabled( user.getEnabled() );
         userEntity.setCreateTime( user.getCreateTime() );
+        userEntity.setEnabled( user.getEnabled() );
+        userEntity.setId( user.getId() );
         userEntity.setUpdateTime( user.getUpdateTime() );
+        userEntity.setUsername( user.getUsername() );
 
         return userEntity;
     }
@@ -36,11 +36,11 @@ public class UserConverterImpl implements UserConverter {
 
         User user = new User();
 
-        user.setId( entity.getId() );
-        user.setUsername( entity.getUsername() );
-        user.setEnabled( entity.getEnabled() );
         user.setCreateTime( entity.getCreateTime() );
+        user.setEnabled( entity.getEnabled() );
+        user.setId( entity.getId() );
         user.setUpdateTime( entity.getUpdateTime() );
+        user.setUsername( entity.getUsername() );
 
         return user;
     }

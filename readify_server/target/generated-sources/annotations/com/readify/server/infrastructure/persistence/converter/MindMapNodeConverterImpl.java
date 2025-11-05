@@ -8,8 +8,8 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-11-05T13:30:57+0800",
-    comments = "version: 1.5.5.Final, compiler: javac, environment: Java 21.0.2 (Oracle Corporation)"
+    date = "2025-11-05T18:36:44+0800",
+    comments = "version: 1.5.5.Final, compiler: Eclipse JDT (IDE) 3.44.0.v20251023-0518, environment: Java 21.0.8 (Eclipse Adoptium)"
 )
 public class MindMapNodeConverterImpl implements MindMapNodeConverter {
 
@@ -21,17 +21,17 @@ public class MindMapNodeConverterImpl implements MindMapNodeConverter {
 
         MindMapNodeEntity mindMapNodeEntity = new MindMapNodeEntity();
 
-        mindMapNodeEntity.setId( node.getId() );
-        mindMapNodeEntity.setProjectId( node.getProjectId() );
+        mindMapNodeEntity.setContent( node.getContent() );
+        mindMapNodeEntity.setCreatedTime( node.getCreatedTime() );
+        mindMapNodeEntity.setDeleted( node.getDeleted() );
         mindMapNodeEntity.setFileId( node.getFileId() );
+        mindMapNodeEntity.setId( node.getId() );
+        mindMapNodeEntity.setLevel( node.getLevel() );
         mindMapNodeEntity.setMindMapId( node.getMindMapId() );
         mindMapNodeEntity.setParentId( node.getParentId() );
-        mindMapNodeEntity.setContent( node.getContent() );
+        mindMapNodeEntity.setProjectId( node.getProjectId() );
         mindMapNodeEntity.setSequence( node.getSequence() );
-        mindMapNodeEntity.setLevel( node.getLevel() );
-        mindMapNodeEntity.setCreatedTime( node.getCreatedTime() );
         mindMapNodeEntity.setUpdatedTime( node.getUpdatedTime() );
-        mindMapNodeEntity.setDeleted( node.getDeleted() );
 
         return mindMapNodeEntity;
     }
@@ -44,17 +44,17 @@ public class MindMapNodeConverterImpl implements MindMapNodeConverter {
 
         MindMapNode mindMapNode = new MindMapNode();
 
-        mindMapNode.setId( entity.getId() );
-        mindMapNode.setProjectId( entity.getProjectId() );
+        mindMapNode.setContent( entity.getContent() );
+        mindMapNode.setCreatedTime( entity.getCreatedTime() );
+        mindMapNode.setDeleted( entity.getDeleted() );
         mindMapNode.setFileId( entity.getFileId() );
+        mindMapNode.setId( entity.getId() );
+        mindMapNode.setLevel( entity.getLevel() );
         mindMapNode.setMindMapId( entity.getMindMapId() );
         mindMapNode.setParentId( entity.getParentId() );
-        mindMapNode.setContent( entity.getContent() );
+        mindMapNode.setProjectId( entity.getProjectId() );
         mindMapNode.setSequence( entity.getSequence() );
-        mindMapNode.setLevel( entity.getLevel() );
-        mindMapNode.setCreatedTime( entity.getCreatedTime() );
         mindMapNode.setUpdatedTime( entity.getUpdatedTime() );
-        mindMapNode.setDeleted( entity.getDeleted() );
 
         return mindMapNode;
     }

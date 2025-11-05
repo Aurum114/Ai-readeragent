@@ -6,8 +6,8 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-11-05T13:30:58+0800",
-    comments = "version: 1.5.5.Final, compiler: javac, environment: Java 21.0.2 (Oracle Corporation)"
+    date = "2025-11-05T18:36:44+0800",
+    comments = "version: 1.5.5.Final, compiler: Eclipse JDT (IDE) 3.44.0.v20251023-0518, environment: Java 21.0.8 (Eclipse Adoptium)"
 )
 public class ProjectConverterImpl implements ProjectConverter {
 
@@ -19,12 +19,12 @@ public class ProjectConverterImpl implements ProjectConverter {
 
         ProjectEntity projectEntity = new ProjectEntity();
 
-        projectEntity.setId( project.getId() );
-        projectEntity.setUserId( project.getUserId() );
-        projectEntity.setName( project.getName() );
-        projectEntity.setDescription( project.getDescription() );
         projectEntity.setCreateTime( project.getCreateTime() );
+        projectEntity.setDescription( project.getDescription() );
+        projectEntity.setId( project.getId() );
+        projectEntity.setName( project.getName() );
         projectEntity.setUpdateTime( project.getUpdateTime() );
+        projectEntity.setUserId( project.getUserId() );
 
         return projectEntity;
     }
@@ -37,12 +37,12 @@ public class ProjectConverterImpl implements ProjectConverter {
 
         Project project = new Project();
 
-        project.setId( entity.getId() );
-        project.setUserId( entity.getUserId() );
-        project.setName( entity.getName() );
-        project.setDescription( entity.getDescription() );
         project.setCreateTime( entity.getCreateTime() );
+        project.setDescription( entity.getDescription() );
+        project.setId( entity.getId() );
+        project.setName( entity.getName() );
         project.setUpdateTime( entity.getUpdateTime() );
+        project.setUserId( entity.getUserId() );
 
         return project;
     }

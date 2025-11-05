@@ -8,8 +8,8 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-11-05T13:30:58+0800",
-    comments = "version: 1.5.5.Final, compiler: javac, environment: Java 21.0.2 (Oracle Corporation)"
+    date = "2025-11-05T18:36:44+0800",
+    comments = "version: 1.5.5.Final, compiler: Eclipse JDT (IDE) 3.44.0.v20251023-0518, environment: Java 21.0.8 (Eclipse Adoptium)"
 )
 public class MindMapVOConverterImpl implements MindMapVOConverter {
 
@@ -21,12 +21,12 @@ public class MindMapVOConverterImpl implements MindMapVOConverter {
 
         MindMapVO mindMapVO = new MindMapVO();
 
+        mindMapVO.setDescription( mindMap.getDescription() );
+        mindMapVO.setFileId( mindMap.getFileId() );
         mindMapVO.setId( mindMap.getId() );
         mindMapVO.setProjectId( mindMap.getProjectId() );
-        mindMapVO.setFileId( mindMap.getFileId() );
         mindMapVO.setTitle( mindMap.getTitle() );
         mindMapVO.setType( mindMap.getType() );
-        mindMapVO.setDescription( mindMap.getDescription() );
 
         return mindMapVO;
     }
@@ -39,12 +39,12 @@ public class MindMapVOConverterImpl implements MindMapVOConverter {
 
         MindMap mindMap = new MindMap();
 
+        mindMap.setDescription( mindMapVO.getDescription() );
+        mindMap.setFileId( mindMapVO.getFileId() );
         mindMap.setId( mindMapVO.getId() );
         mindMap.setProjectId( mindMapVO.getProjectId() );
-        mindMap.setFileId( mindMapVO.getFileId() );
         mindMap.setTitle( mindMapVO.getTitle() );
         mindMap.setType( mindMapVO.getType() );
-        mindMap.setDescription( mindMapVO.getDescription() );
 
         return mindMap;
     }
@@ -69,11 +69,11 @@ public class MindMapVOConverterImpl implements MindMapVOConverter {
             return;
         }
 
+        mindMapVO.setDescription( mindMap.getDescription() );
+        mindMapVO.setFileId( mindMap.getFileId() );
         mindMapVO.setId( mindMap.getId() );
         mindMapVO.setProjectId( mindMap.getProjectId() );
-        mindMapVO.setFileId( mindMap.getFileId() );
         mindMapVO.setTitle( mindMap.getTitle() );
         mindMapVO.setType( mindMap.getType() );
-        mindMapVO.setDescription( mindMap.getDescription() );
     }
 }

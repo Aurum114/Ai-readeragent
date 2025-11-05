@@ -8,8 +8,8 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-11-05T13:30:57+0800",
-    comments = "version: 1.5.5.Final, compiler: javac, environment: Java 21.0.2 (Oracle Corporation)"
+    date = "2025-11-05T18:36:44+0800",
+    comments = "version: 1.5.5.Final, compiler: Eclipse JDT (IDE) 3.44.0.v20251023-0518, environment: Java 21.0.8 (Eclipse Adoptium)"
 )
 public class UserVOConverterImpl implements UserVOConverter {
 
@@ -21,11 +21,11 @@ public class UserVOConverterImpl implements UserVOConverter {
 
         UserVO userVO = new UserVO();
 
-        userVO.setId( user.getId() );
-        userVO.setUsername( user.getUsername() );
-        userVO.setEnabled( user.getEnabled() );
         userVO.setCreateTime( user.getCreateTime() );
+        userVO.setEnabled( user.getEnabled() );
+        userVO.setId( user.getId() );
         userVO.setUpdateTime( user.getUpdateTime() );
+        userVO.setUsername( user.getUsername() );
 
         return userVO;
     }
@@ -38,11 +38,11 @@ public class UserVOConverterImpl implements UserVOConverter {
 
         User user = new User();
 
-        user.setId( userVO.getId() );
-        user.setUsername( userVO.getUsername() );
-        user.setEnabled( userVO.getEnabled() );
         user.setCreateTime( userVO.getCreateTime() );
+        user.setEnabled( userVO.getEnabled() );
+        user.setId( userVO.getId() );
         user.setUpdateTime( userVO.getUpdateTime() );
+        user.setUsername( userVO.getUsername() );
 
         return user;
     }
@@ -67,10 +67,10 @@ public class UserVOConverterImpl implements UserVOConverter {
             return;
         }
 
-        userVO.setId( user.getId() );
-        userVO.setUsername( user.getUsername() );
-        userVO.setEnabled( user.getEnabled() );
         userVO.setCreateTime( user.getCreateTime() );
+        userVO.setEnabled( user.getEnabled() );
+        userVO.setId( user.getId() );
         userVO.setUpdateTime( user.getUpdateTime() );
+        userVO.setUsername( user.getUsername() );
     }
 }

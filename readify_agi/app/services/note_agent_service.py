@@ -208,8 +208,8 @@ class NoteAgentService(AgentService):
                 "file_id": document.file_id,
                 "content": document.content,
                 "sequence": document.sequence,
-                "created_at": document.created_at.isoformat() if document.created_at else None,
-                "updated_at": document.updated_at.isoformat() if document.updated_at else None
+                "create_time": document.create_time,
+                "update_time": document.update_time
             }
             
             return json.dumps(document_dict, ensure_ascii=False, indent=2)
