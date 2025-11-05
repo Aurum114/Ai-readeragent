@@ -6,6 +6,19 @@
         <span class="subtitle">笔记</span>
       </div>
       <div class="actions">
+        <el-dropdown @command="handleExport">
+          <el-button type="text" class="export-btn">
+            <el-icon><Download /></el-icon>
+            导出
+          </el-button>
+          <template #dropdown>
+            <el-dropdown-menu>
+            <el-dropdown-item command="markdown">导出Markdown</el-dropdown-item>
+            <el-dropdown-item command="png" :disabled="isEditing">导出思维导图PNG</el-dropdown-item>
+            <el-dropdown-item command="pptx" :disabled="isEditing">导出PPT</el-dropdown-item>
+          </el-dropdown-menu>
+          </template>
+        </el-dropdown>
         <el-button 
           type="text" 
           class="edit-btn" 
@@ -194,10 +207,11 @@
 
 <script lang="ts" setup>
 import { ref, computed, onMounted, onBeforeUnmount, defineProps, defineEmits, watch, nextTick } from 'vue'
-import { Close, Edit, EditPen, Lightning, Connection, Loading, Check, ArrowRightBold, ArrowLeftBold, ChatDotRound, Minus } from '@element-plus/icons-vue'
-import { ElMessage } from 'element-plus'
+import { Close, Edit, EditPen, Lightning, Connection, Loading, Check, ArrowRightBold, ArrowLeftBold, ChatDotRound, Minus, Download } from '@element-plus/icons-vue'
+import { ElMessage, ElMessageBox } from 'element-plus'
 import { marked } from 'marked'
 import { h } from 'vue'
+import { docmeePPTService } from '../utils/docmeePPTService'
 
 // 配置marked选项
 marked.setOptions({
@@ -557,6 +571,175 @@ declare global {
   }
 }
 
+// 导出Markdown文件
+const exportMarkdown = () => {
+  try {
+    // 使用当前笔记标题作为文件名，替换特殊字符
+    const fileName = (props.title || '未命名笔记').replace(/[^a-zA-Z0-9\u4e00-\u9fa5]/g, '_') + '.md'
+    
+    // 创建Blob对象
+    const blob = new Blob([props.content], { type: 'text/markdown;charset=utf-8' })
+    
+    // 创建下载链接
+    const link = document.createElement('a')
+    link.href = URL.createObjectURL(blob)
+    link.download = fileName
+    
+    // 触发下载
+    document.body.appendChild(link)
+    link.click()
+    
+    // 清理
+    document.body.removeChild(link)
+    URL.revokeObjectURL(link.href)
+    
+    ElMessage.success('Markdown文件导出成功')
+  } catch (error) {
+    console.error('导出Markdown失败:', error)
+    ElMessage.error('导出失败: ' + (error instanceof Error ? error.message : String(error)))
+  }
+}
+
+// 导出PPT文件
+const exportPPT = async () => {
+  try {
+    // 从环境变量中获取API密钥（服务内部已处理）
+    
+    // 显示加载状态
+    markmapLoading.value = true
+    
+    // 生成PPT并获取下载链接
+    // 确保提供默认标题
+    const title = props.title || '未命名笔记';
+    const fileUrl = await docmeePPTService.exportPptxFromMarkdown(props.content, title)
+    
+    if (fileUrl) {
+      // 创建下载链接
+      const link = document.createElement('a')
+      const fileName = (props.title || '未命名笔记').replace(/[^a-zA-Z0-9\u4e00-\u9fa5]/g, '_') + '.pptx'
+      link.href = fileUrl
+      link.download = fileName
+      
+      // 触发下载
+      document.body.appendChild(link)
+      link.click()
+      
+      // 清理
+      document.body.removeChild(link)
+    }
+  } catch (error) {
+    if (error !== 'cancel') {
+      console.error('导出PPT失败:', error)
+      ElMessage.error('导出PPT失败: ' + (error instanceof Error ? error.message : String(error)))
+    }
+  } finally {
+    markmapLoading.value = false
+  }
+}
+
+// 导出PNG文件
+const exportPNG = async () => {
+  try {
+    if (!svgContainer.value) {
+      throw new Error('思维导图容器不存在')
+    }
+    
+    const svgElement = svgContainer.value.querySelector('svg')
+    if (!svgElement) {
+      throw new Error('未找到SVG元素')
+    }
+    
+    // 显示加载状态
+    markmapLoading.value = true
+    
+    // 克隆SVG元素以便不影响当前显示
+    const clonedSvg = svgElement.cloneNode(true) as SVGElement
+    
+    // 重置transform属性，确保导出完整的思维导图（不受缩放和平移影响）
+    clonedSvg.style.transform = 'none'
+    
+    // 获取原始SVG尺寸或设置默认尺寸
+    const originalWidth = svgElement.getAttribute('width') || '800'
+    const originalHeight = svgElement.getAttribute('height') || '600'
+    
+    // 设置克隆后的SVG尺寸为完整大小
+    clonedSvg.setAttribute('width', originalWidth)
+    clonedSvg.setAttribute('height', originalHeight)
+    
+    // 确保SVG内容不受容器的viewBox限制
+    clonedSvg.removeAttribute('viewBox')
+    
+    // 将SVG转换为数据URL
+    const serializer = new XMLSerializer()
+    const svgString = serializer.serializeToString(clonedSvg)
+    const svgDataUrl = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svgString)
+    
+    // 加载SVG到Image对象
+    const img = new Image()
+    await new Promise<void>((resolve, reject) => {
+      img.onload = () => resolve()
+      img.onerror = () => reject(new Error('加载SVG失败'))
+      img.src = svgDataUrl
+    })
+    
+    // 创建canvas用于绘制，使用适合的尺寸
+    const canvas = document.createElement('canvas')
+    // 设置适当的尺寸，可以根据实际需要调整
+    const canvasWidth = parseInt(originalWidth) || 1200
+    const canvasHeight = parseInt(originalHeight) || 800
+    canvas.width = canvasWidth
+    canvas.height = canvasHeight
+    const ctx = canvas.getContext('2d')
+    
+    if (!ctx) {
+      throw new Error('获取Canvas上下文失败')
+    }
+    
+    // 绘制背景为白色
+    ctx.fillStyle = 'white'
+    ctx.fillRect(0, 0, canvas.width, canvas.height)
+    
+    // 居中绘制SVG内容
+    const x = (canvas.width - img.width) / 2
+    const y = (canvas.height - img.height) / 2
+    ctx.drawImage(img, x, y)
+    
+    // 将canvas转换为PNG数据URL
+    const pngDataUrl = canvas.toDataURL('image/png')
+    
+    // 创建下载链接
+    const link = document.createElement('a')
+    const fileName = (props.title || '未命名思维导图').replace(/[^a-zA-Z0-9\u4e00-\u9fa5]/g, '_') + '.png'
+    link.href = pngDataUrl
+    link.download = fileName
+    
+    // 触发下载
+    document.body.appendChild(link)
+    link.click()
+    
+    // 清理
+    document.body.removeChild(link)
+    
+    ElMessage.success('思维导图PNG文件导出成功')
+  } catch (error) {
+    console.error('导出PNG失败:', error)
+    ElMessage.error('导出失败: ' + (error instanceof Error ? error.message : String(error)))
+  } finally {
+    markmapLoading.value = false
+  }
+}
+
+// 处理导出命令
+const handleExport = (command: string) => {
+  if (command === 'markdown') {
+    exportMarkdown()
+  } else if (command === 'png') {
+    exportPNG()
+  } else if (command === 'pptx') {
+    exportPPT()
+  }
+}
+
 // 暴露方法给父组件
 defineExpose({
   handleAgentMessage,
@@ -626,12 +809,14 @@ const BrainProcess = {
   gap: 8px;
 }
 
+.export-btn,
 .edit-btn,
 .close-btn {
   padding: 6px;
   color: #909399;
 }
 
+.export-btn:hover,
 .edit-btn:hover,
 .close-btn:hover {
   color: #606266;
@@ -1125,4 +1310,4 @@ const BrainProcess = {
 .mode-select .el-input__inner {
   background-color: rgb(237, 239, 250) !important;
 }
-</style> 
+</style>
