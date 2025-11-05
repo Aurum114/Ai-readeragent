@@ -47,8 +47,7 @@ class FileService:
         self, 
         project_id: int,
         input_text: str, 
-        top_k: int = 5,
-        allowed_file_ids: Optional[List[int]] = None,
+        top_k: int = 5
     ) -> List[Dict[str, Any]]:
         """
         基于project_id的向量检索方法
@@ -57,7 +56,6 @@ class FileService:
             project_id: 项目ID
             input_text: 输入文本
             top_k: 返回结果数量
-            allowed_file_ids: 允许的文件ID列表
             
         Returns:
             List[Dict[str, Any]]: 检索结果列表
@@ -67,10 +65,6 @@ class FileService:
         
         # 获取项目相关的文件ID列表
         file_ids = await project_file_repository.get_file_ids_by_project_id(project_id)
-        # 如果提供了允许的文件ID列表，则进行过滤
-        if allowed_file_ids:
-            allowed_set = set(int(fid) for fid in allowed_file_ids)
-            file_ids = [fid for fid in file_ids if fid in allowed_set]
         if not file_ids:
             return []
         

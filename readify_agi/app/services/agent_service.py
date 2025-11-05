@@ -129,14 +129,6 @@ class AgentService:
             ChatOpenAI: 语言模型实例
         """
         config = get_llm_config(self.vendor)
-        # allow model override from context
-        try:
-            if isinstance(self.context, dict):
-                override = self.context.get("model") or self.context.get("model_name")
-                if isinstance(override, str) and override.strip():
-                    config["model_name"] = override.strip()
-        except Exception:
-            pass
         return ChatOpenAI(
             base_url=config["base_url"],
             api_key=config["api_key"],
@@ -180,18 +172,6 @@ class AgentService:
                 # 使用当前实例的项目ID
                 project_id = self.project_id
                 
-                # 允许前端通过 context 限制检索文件范围
-                allowed = None
-                try:
-                    if isinstance(self.context, dict):
-                        allowed = self.context.get("file_ids") or self.context.get("allowed_file_ids")
-                        if isinstance(allowed, list):
-                            allowed = [int(x) for x in allowed if str(x).isdigit()]
-                        else:
-                            allowed = None
-                except Exception:
-                    allowed = None
-                
                 # 使用文件仓库进行向量检索
                 from app.services.file_service import FileService
                 file_service = FileService(self.file_repo)
@@ -200,8 +180,7 @@ class AgentService:
                 results = await file_service.search_files_by_vector(
                     project_id=project_id,
                     input_text=query,
-                    top_k=top_k,
-                    allowed_file_ids=allowed
+                    top_k=top_k
                 )
                 
                 # 格式化结果
@@ -516,7 +495,11 @@ class AgentService:
                         'content': f'保存对话记录时出错: {str(e)}',
                         'project_id': project_id
                     })
-
+            
+            return True
+        
+        return False
+    
     async def _handle_chat_model_stream(self, event: Dict, callback: Callable, project_id: int) -> None:
         """
         处理聊天模型流事件，子类可以重写以添加自定义逻辑
@@ -527,25 +510,13 @@ class AgentService:
             project_id: 项目ID
         """
         content = event["data"]["chunk"].content
-        # 忽略空或全空白片段，避免产生大量空 thought
-        try:
-            if content is None:
-                return
-            if isinstance(content, str):
-                if content.strip() == "":
-                    return
-            else:
-                # 非字符串内容，直接忽略
-                return
-        except Exception:
-            return
-
-        # 仅当有有效内容时再发出并收集
+        # 直接发出
         await callback({
             'type': 'thought',
             'content': content,
             'project_id': project_id
         })
+        # 收集思考内容
         self.all_thoughts.append(content)
     
     async def _handle_tool_start(self, event: Dict, callback: Callable, project_id: int) -> None:
